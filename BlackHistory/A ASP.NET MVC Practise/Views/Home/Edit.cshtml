@@ -1,0 +1,244 @@
+@model addressBook.Models.Table
+
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/cat.png">
+    <title>UniAddressBook!－修改聯絡人</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- 自訂CSS -->
+    <link rel="stylesheet" href="main.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- 頁面個別CSS -->
+    <style>
+        @@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
+
+        * {
+            font-family: 'Noto Sans TC', sans-serif;
+            color: #5A5A5A;
+            ;
+        }
+
+        #true_body {
+            margin-top: 50px;
+            height: 440px;
+        }
+        /*側欄區，寫在main.css邊線去除會失效*/
+        .navbar {
+            width: 100%;
+            padding-left: 42%;
+            background: linear-gradient(270deg, #FFE174 4.44%, #C9E4FF 56.53%, #FFC5ED 90.66%);
+        }
+        /*修正側欄問題*/
+        @@media(max-width:600px) {
+            .navbar {
+                width: 100%;
+                padding-left: 25%;
+                background: linear-gradient(270deg, #FFE174 4.44%, #C9E4FF 56.53%, #FFC5ED 90.66%);
+            }
+
+            #true_body {
+                margin-top: 50px;
+                height: 900px;
+            }
+        }
+        /*按鈕區，寫在main.css邊線去除會失效*/
+        .btn-danger {
+            background-color: #FF86B1;
+            border-style: none;
+            /*font-weight:bold;*/ /*實際上看細一點好像比較精緻*/
+        }
+
+            .btn-danger:hover {
+                background-color: #ff679c;
+                border-style: none;
+            }
+
+        .btn-primary {
+            background-color: #86C5FF;
+            border-style: none;
+            /*font-weight:bold;*/
+        }
+
+            .btn-primary:hover {
+                background-color: #61b3ff;
+                border-style: none;
+            }
+
+        .btn-secondary {
+            border-style: none;
+            /*font-weight:bold;*/
+        }
+
+
+        footer {
+            background-color: #404549;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            font-size: 12px;
+            height: 22px;
+            display: block;
+            bottom: 0;
+            width: 100%;
+            position: fixed;
+        }
+        /*超連結區*/
+        a:link,
+        a:visited {
+            color: #7E89F1;
+        }
+
+        a:hover {
+            color: #6c76cd;
+            text-decoration: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- 頂欄 -->
+    <!-- Image and text -->
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="~/Home/Index">
+            <img src="~/img/logo.svg" height="40px" class="d-inline-block align-top">
+        </a>
+    </nav>
+    <!-- 頂欄以下的內容 -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2">
+                <!-- 留空 -->
+            </div>
+            <div class="col-sm-8" id="true_body">
+                <!-- 上半部 -->
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h2>修改聯絡人</h2>
+                    </div>
+                    <div class="col-sm-8" style="text-align: right;">
+                        <!-- 留空 -->
+                    </div>
+                </div><br>
+                <!-- 下半部 -->
+                <!-- 表單區，分兩半 -->
+                @using (Html.BeginForm())
+                {
+                    <div class="row">
+                        @*using (Html.BeginForm("Create","HtmlHelper",FormMethod.Post,htmlAttributes: new { @class = "form-horizontal", role="form" }))*@
+
+
+                        <div class="col-sm-6">
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(model => model.Id)
+                            <!-- 一個水平輸入組 -->
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">名稱</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", placeholder = "必填", required = "required" } })
+                                    <!--<input type="text" class="form-control" name="" required placeholder="必填">-->
+                                </div>
+                            </div>
+                            <!-- 一個水平輸入組 -->
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">電話</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control" } })
+                                    <!--<input type="text" class="form-control" name="" pattern="[0-9]{0,}" title="僅能輸入數字">-->
+                                </div>
+                            </div>
+                            <!-- 一個水平輸入組 -->
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">信箱</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                                    <!--<input type="mail" class="form-control" name="" pattern="[a-z0-9._%+-]+小老鼠[a-z0-9.-]+\.[a-z]{2,4}$" title="請輸入信箱格式">-->
+                                </div>
+                            </div>
+                            <!-- 一個水平輸入組 -->
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">網站</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.site, new { htmlAttributes = new { @class = "form-control", placeholder = "輸入http://或https://開頭之網址" } })
+                                    <!--<input type="url" class="form-control" name="" pattern="https?://.*" title="請輸入網址格式" placeholder="輸入http://或https://開頭之網址">-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <!-- 一個水平輸入組 -->
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">分類</label>
+                                <div class="col-sm-10">
+                                    @{
+                                        List<SelectListItem> kindList = new List<SelectListItem>
+                                        {
+                                            new SelectListItem{ Text="未分類"},
+                                            new SelectListItem{ Text="校園"},
+                                            new SelectListItem{ Text="職場"},
+                                            new SelectListItem{ Text="家人"},
+                                            new SelectListItem{ Text="朋友"},
+                                            new SelectListItem{ Text="網友"},
+                                            new SelectListItem{ Text="社團"},
+                                            new SelectListItem{ Text="社區鄰里"},
+                                            new SelectListItem{ Text="其他"},
+
+                                        };
+
+                                    }
+                                    @Html.DropDownListFor(model => model.kind, kindList, htmlAttributes: new { @class = "form-control" })
+                                    @*為了接值，不能用跟新增一樣的寫法Html.DropDownList("kind", new SelectList(new[] { "未分類", "校園" , "職場", "家人", "朋友", "網友", "社團" , "社區鄰里" , "其他" }),htmlAttributes:new { @class = "form-control"})*@
+                                    <!--<select name="" class="form-control" required>
+        <option value="0" selected>未分類</option>
+        <option value="1">校園</option>
+        <option value="2">職場</option>
+        <option value="3">家人</option>
+        <option value="4">朋友</option>
+        <option value="5">網友</option>
+        <option value="6">社團</option>
+        <option value="7">社區鄰里</option>
+        <option value="8">其他</option>
+    </select>-->
+                                </div>
+                            </div>
+                            <!-- 一個水平輸入組 -->
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">生日</label>
+                                <div class="col-sm-10">
+                                    <!--<input type="date" class="form-control" name="">-->
+                                    @Html.EditorFor(model => model.birthday, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                                </div>
+                            </div>
+                            <!-- 一個水平輸入組 -->
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">備註</label>
+                                <div class="col-sm-10">
+                                    @Html.TextAreaFor(model => model.remark,3,40,new { @class = "form-control",style = "resize: none;", type = "text" } )
+                                    <!--<textarea  class="form-control" name="" rows="3" style="resize: none;"></textarea>-->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 按鈕區 -->
+                        <div style="text-align: center;width:1440px;padding-top: 40px;">
+                            <button type="submit" Value="Save" class="btn btn-primary">修改</button>　　　　　<button type="reset" class="btn btn-secondary">重填</button>
+                        </div>
+
+                    </div>}
+            </div>
+            <div class="col-sm-2">
+                <!-- 留空 -->
+            </div>
+        </div>
+
+    </div>
+    <!-- 頁腳 -->
+    <footer>© Agatha Chen 2022</footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+@model addressBook.Models.Table
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/cat.png">
+    <title>UniAddressBook!－詳細資料</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- 自訂CSS -->
+    <link rel="stylesheet" href="main.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- 頁面個別CSS -->
+    <style>
+        @@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
+
+        * {
+            font-family: 'Noto Sans TC', sans-serif;
+            color: #5A5A5A;
+            ;
+        }
+
+        #true_body {
+            margin-top: 50px;
+            height: 430px;
+        }
+        /*側欄區，寫在main.css邊線去除會失效*/
+        .navbar {
+            width: 100%;
+            padding-left: 43%;
+            background: linear-gradient(270deg, #FFE174 4.44%, #C9E4FF 56.53%, #FFC5ED 90.66%);
+        }
+        /*修正側欄問題*/
+        @@media(max-width:600px) {
+            .navbar {
+                width: 100%;
+                padding-left: 25%;
+                background: linear-gradient(270deg, #FFE174 4.44%, #C9E4FF 56.53%, #FFC5ED 90.66%);
+            }
+
+            #true_body {
+                margin-top: 50px;
+                height: 900px;
+            }
+        }
+        /*按鈕區，寫在main.css邊線去除會失效*/
+        .btn-danger {
+            background-color: #FF86B1;
+            border-style: none;
+            /*font-weight:bold;*/ /*實際上看細一點好像比較精緻*/
+        }
+
+            .btn-danger:hover {
+                background-color: #ff679c;
+                border-style: none;
+            }
+
+        .btn-primary {
+            background-color: #86C5FF;
+            border-style: none;
+            /*font-weight:bold;*/
+        }
+
+            .btn-primary:hover {
+                background-color: #61b3ff;
+                border-style: none;
+            }
+
+        .btn-secondary {
+            border-style: none;
+            /*font-weight:bold;*/
+        }
+
+        #biglabel {
+            background-color: #E9F2FF;
+            padding: 10px;
+            color: #535470;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #404549;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            font-size: 12px;
+            height: 22px;
+            display: block;
+            bottom: 0;
+            width: 100%;
+            position: fixed;
+        }
+        /*超連結區*/
+        a:link,
+        a:visited {
+            color: #7E89F1;
+        }
+
+        a:hover {
+            color: #6c76cd;
+            text-decoration: none !important;
+        }
+    </style>
+</head>
+<body>
+        <!-- 頂欄 -->
+        <!-- Image and text -->
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="~/Home/Index">
+                <img src="~/img/logo.svg" height="40px" class="d-inline-block align-top">
+            </a>
+        </nav>
+        <!-- 頂欄以下的內容 -->
+        <div class="container-fluid">
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col-sm-2">
+                    <!-- 留空 -->
+                </div>
+                <div class="col-sm-8" id="true_body">
+                    <!-- 上半部 -->
+                    <div class="row">
+
+                        <div class="col-sm-6" style="margin-top: 10px;text-align: right;">
+                            <span style="background-color: #989898;color: #FFFFFF;padding-left: 5px;padding-right: 5px;padding-top: 2px;padding-bottom: 2px;">@Html.DisplayFor(model => model.kind)</span>
+                        </div>
+                        <div class="col-sm-6 p-0" style="text-align: left;">
+                            <h2>@Html.Raw(Model.name)<a href="@Url.Action("Edit" , new { id=Model.Id })"><img src="~/img/pencil.svg" style="height:20px ;"></a></h2>
+                        </div>
+
+                    </div><br>
+                    <!-- 下半部 -->
+                    <!-- 顯示區，分兩半 -->
+                    <div class="row" style="padding-left: 40px;">
+
+                        <div class="col-sm-6" style="padding-left: 100px;">
+                            <!-- 一個水平標籤 -->
+                            <div class="form-group row">
+                                <label class="col-sm-2" id="biglabel">電話</label>
+                                <div class="col-sm-10" style="margin-top:10px;">@Html.DisplayFor(model => model.phone)<!-- 電話 --></div>
+                            </div>
+                            <!-- 一個水平標籤 -->
+                            <div class="form-group row">
+                                <label class="col-sm-2" id="biglabel">信箱</label>
+                                <div class="col-sm-10" style="margin-top:10px;">
+                                    <a href="mailto:@Html.Raw(Model.email)">@Html.DisplayFor(model => model.email)<!-- 信箱 --></a>
+                                </div>
+                            </div>
+                            <!-- 一個水平標籤 -->
+                            <div class="form-group row">
+                                <label class="col-sm-2" id="biglabel">網站</label>
+                                <div class="col-sm-10" style="margin-top:10px;">
+                                    <a href="@Html.Raw(Model.site)">@Html.DisplayFor(model => model.site)<!-- 網站 --></a>
+                                </div>
+                            </div>
+                            <!-- 一個水平標籤 -->
+                            <div class="form-group row">
+                                <label class="col-sm-2" id="biglabel">生日</label>
+                                <div class="col-sm-10" style="margin-top:10px;">@Html.DisplayFor(model => model.birthday)<!-- 生日 --></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <!-- 備註區 -->
+                            <h4>備註</h4>
+                            <hr>
+                            <div>
+                                @Html.DisplayFor(model => model.remark)<!-- 內容 -->
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <!-- 留空 -->
+                </div>
+            </div>
+
+        </div>
+        <!-- 頁腳 -->
+        <footer>© Agatha Chen 2022</footer>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>

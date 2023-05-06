@@ -1,0 +1,144 @@
+﻿@model IEnumerable<addressBook1.Models.Table>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        @@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
+
+        * {
+            font-family: 'Noto Sans TC', sans-serif;
+            color: #5A5A5A;
+            ;
+        }
+
+        #true_body {
+            margin-top: 50px;
+            height: 440px;
+        }
+        /*側欄區，寫在main.css邊線去除會失效*/
+        .navbar {
+            width: 100%;
+            padding-left: 42%;
+            background: linear-gradient(270deg, #FFE174 4.44%, #C9E4FF 56.53%, #FFC5ED 90.66%);
+        }
+        /*修正側欄問題*/
+        @@media(max-width:600px) {
+            .navbar {
+                width: 100%;
+                padding-left: 25%;
+                background: linear-gradient(270deg, #FFE174 4.44%, #C9E4FF 56.53%, #FFC5ED 90.66%);
+            }
+
+            #true_body {
+                margin-top: 50px;
+                height: 800px;
+            }
+        }
+        /*按鈕區，寫在main.css邊線去除會失效*/
+        .btn-danger {
+            background-color: #FF86B1;
+            border-style: none;
+            /*font-weight:bold;*/ /*實際上看細一點好像比較精緻*/
+        }
+
+            .btn-danger:hover {
+                background-color: #ff679c;
+                border-style: none;
+            }
+
+        .btn-primary {
+            background-color: #86C5FF;
+            border-style: none;
+            /*font-weight:bold;*/
+        }
+
+            .btn-primary:hover {
+                background-color: #61b3ff;
+                border-style: none;
+            }
+
+        .btn-secondary {
+            border-style: none;
+            /*font-weight:bold;*/
+        }
+
+        footer {
+            background-color: #404549;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            font-size: 12px;
+            height: 22px;
+            display: block;
+            bottom: 0;
+            width: 100%;
+            position: fixed;
+        }
+    </style>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create",
+        new { @class = "btn btn-primary" })
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.site)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.detail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.kind)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.site)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.detail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.kind)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>
