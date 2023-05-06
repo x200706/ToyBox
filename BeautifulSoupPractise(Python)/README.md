@@ -3,6 +3,10 @@
 
 順便也練習了Python如何跟PostgreSQL連線
 
+想起來了，還有catch住一個例外，有個簡陋的log輸出功能
+
+第一次覺得Python原來可以這麼好玩，比之前在Google Colab照教學寫基礎開心很多 ~~PyCharm是超棒的IDE必須吹（拖走）~~
+
 ***
 ### 附錄
 - [Blog上的過程紀錄](https://crystalc.tiddlyhost.com/#20230307~08%20Python%E5%B9%BC%E5%85%92%E7%8F%AD%EF%BC%88%E5%88%AA%E9%99%A4%E7%B7%9A%EF%BC%89%20%26%E8%B3%87%E6%96%99%E5%AD%98%E5%85%A5PostgreSQL%E8%B3%87%E6%96%99%E8%A1%A8)
