@@ -9,6 +9,6 @@
 
 ***
 ### 附錄
-- [Blog上的過程紀錄](https://crystalc.tiddlyhost.com/#20230307~08%20Python%E5%B9%BC%E5%85%92%E7%8F%AD%EF%BC%88%E5%88%AA%E9%99%A4%E7%B7%9A%EF%BC%89%20%26%E8%B3%87%E6%96%99%E5%AD%98%E5%85%A5PostgreSQL%E8%B3%87%E6%96%99%E8%A1%A8)
+- [Blog上的過程紀錄](https://x200706.github.io/#20230307~08%20Python%E5%B9%BC%E5%85%92%E7%8F%AD%EF%BC%88%E5%88%AA%E9%99%A4%E7%B7%9A%EF%BC%89%20%26%E8%B3%87%E6%96%99%E5%AD%98%E5%85%A5PostgreSQL%E8%B3%87%E6%96%99%E8%A1%A8)
 - 指導：[Faizc](https://github.com/faiz135753)
   - 不過拿到寫到一半的代碼並沒有太多物件導向要素，所以花了不少時間改這部分，不過寫法還是很醜就是了，而且測出來效能不太好，爬台股資料聽說爬了四天啊整整四天`;_;`...
